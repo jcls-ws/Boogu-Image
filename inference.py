@@ -840,6 +840,32 @@ def _disable_deepgemm_for_fp8_vlm() -> None:
         fg_fp8._load_deepgemm_kernel = _raise_import_error
 
 
+def _patch_fp8_tp_layer_overrides() -> None:
+    # For transformers >= 5.16.0
+    # `FinegrainedFP8HfQuantizer.update_tp_plan()` looks up the experts implementation with
+    # `FP8Experts._impl_tp_layer_overrides.get(impl)` and passes no default, so a model whose
+    # implementation has no override entry (e.g. the non-MoE Qwen3 text encoder, where `impl`
+    # is None) gets `None` back and then crashes with
+    # `AttributeError: 'NoneType' object has no attribute 'get'`.
+    # Make the lookup fall back to an empty override mapping, i.e. keep the plan as-is.
+    try:
+        from transformers.integrations.finegrained_fp8 import FP8Experts
+    except ImportError:
+        return
+
+    overrides = getattr(FP8Experts, "_impl_tp_layer_overrides", None)
+    if overrides is None or getattr(FP8Experts, "_boogu_patched_tp_overrides", False):
+        return
+
+    class _OverridesWithEmptyDefault(dict):
+        def get(self, key, default=None):
+            value = super().get(key, default)
+            return {} if value is None else value
+
+    FP8Experts._impl_tp_layer_overrides = _OverridesWithEmptyDefault(overrides)
+    FP8Experts._boogu_patched_tp_overrides = True
+
+
 def load_pipeline(
     args: argparse.Namespace, weight_dtype: torch.dtype
 ) -> BooguImagePipeline:
@@ -862,6 +888,7 @@ def load_pipeline(
 
             # Use Triton finegrained-fp8 kernel for better compatibility.
             _disable_deepgemm_for_fp8_vlm()
+            _patch_fp8_tp_layer_overrides()
 
             # Need to load the fp8 transformer weights separately, because they are not in the safetensors format.
             print(
