@@ -46,6 +46,7 @@ English | [中文](./README_CN.md)
 This repository provides checkpoints and inference code for **Boogu-Image-0.1**.
 
 ## 📣 News
+- **2026-10-27** 🔥 **MDMR-Bench is released!** MDMR-Bench is a **Multi-Dimensional Benchmark for Multi-Reference Image Generation** and is accepted at NeurIPS 2026, Evaluations & Datasets Track. Check out our [paper](https://arxiv.org/html/2610.32459v1) and [code](https://github.com/LHRYANG/MDMR-Bench)!
 - **2026-07-23** 🔥 **NPU support is now available!** Check out the `npu` branch for initial NPU backend support and instructions. We welcome feedback and bug reports!
 - **2026-07-22** 🔥 **vLLM-Omni now supports Boogu-Image!** You can now run Boogu-Image models with the vLLM-Omni inference server. See the official recipe for details and setup: [vllm-project/vllm-omni Boogu-Image recipe](https://github.com/vllm-project/vllm-omni/blob/main/recipes/Boogu/Boogu-Image.md).
 - **2026-07-16** 🔥 🚀 🚀 **The Boogu-Image-0.1 Technical Report is released!** We have released our technical report. If you find our series of models or the report helpful to your research or applications, please consider citing our paper. Thank you very much for your support! You can read the paper here: [arXiv:2607.13125](https://arxiv.org/abs/2607.13125).

@@ -47,6 +47,7 @@
 本仓库提供 **Boogu-Image-0.1** 的模型权重和推理代码。
 
 ## 📣 最新动态
+- **2026-10-27** 🔥 **MDMR-Bench 正式发布！** MDMR-Bench 是一个面向**多参考图像生成的多维度评测基准**, 并且已经被NeurIPS 2026, Evaluations & Datasets Track接收。欢迎阅读我们的[论文](https://arxiv.org/html/2610.32459v1)并查看[代码](https://github.com/LHRYANG/MDMR-Bench)！
 - **2026-07-23** 🔥 **NPU 支持现已上线！** 访问 `npu` 分支以体验初步 NPU 后端支持与说明文档。欢迎大家反馈建议和 bug！
 - **2026-07-22** 🔥 **vLLM-Omni 现已支持 Boogu-Image！** 你现在可以使用 vLLM-Omni 推理服务器运行 Boogu-Image 模型。详细的配置与使用方法请参考官方操作指南：[vllm-project/vllm-omni Boogu-Image 使用文档](https://github.com/vllm-project/vllm-omni/blob/main/recipes/Boogu/Boogu-Image.md)。
 - **2026-07-16** 🔥 🚀 🚀 **Boogu-Image-0.1 技术报告正式发布！** 我们已经正式发布了该系列模型的技术报告。如果您觉得我们的系列模型或报告内容对您的研究和工作有帮助，希望您能引用我们的文章。非常感谢您的支持！论文链接：[arXiv:2607.13125](https://arxiv.org/abs/2607.13125)。
